@@ -7,6 +7,7 @@ const app = express();
 
 app.use(express.json());
 
+//add a book
 app.post("/books", async (request, response) => {
   try {
     if (
@@ -34,6 +35,7 @@ app.post("/books", async (request, response) => {
   }
 });
 
+//view all books
 app.get("/books", async (request, response) => {
   try {
     const books = await Book.find({});
@@ -41,6 +43,18 @@ app.get("/books", async (request, response) => {
       count: books.length,
       data: books,
     });
+  } catch (error) {
+    console.log(error);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+//view one book
+app.get("/books/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+    const book = await Book.findById(id);
+    response.status(200).json(book);
   } catch (error) {
     console.log(error);
     response.status(500).send({ message: error.message });
