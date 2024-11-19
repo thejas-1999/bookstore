@@ -31,14 +31,18 @@ const Home = () => {
     <div className="p-4">
       <div className="flex justify-center items-center gap-x-4">
         <button
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          className={`${
+            showType === "table" ? "bg-sky-600" : "bg-sky-300"
+          } hover:bg-sky-600 px-4 py-1 rounded-lg`}
           onClick={() => setShowType("table")}
         >
           Table
         </button>
 
         <button
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          className={`${
+            showType === "card" ? "bg-sky-600" : "bg-sky-300"
+          } hover:bg-sky-600 px-4 py-1 rounded-lg`}
           onClick={() => setShowType("card")}
         >
           Card
